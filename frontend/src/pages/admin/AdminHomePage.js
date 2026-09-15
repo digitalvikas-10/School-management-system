@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Box, Button, Typography } from "@mui/material";
-import { AddRounded, GroupsRounded, SchoolRounded, ClassRounded, SubjectRounded, CampaignRounded, PaymentsRounded, TrendingUpRounded } from "@mui/icons-material";
+import { AddRounded, GroupsRounded, SchoolRounded, ClassRounded, SubjectRounded, PaymentsRounded, TrendingUpRounded } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllSclasses } from "../../redux/sclassRelated/sclassHandle";
 import { getAllStudents } from "../../redux/studentRelated/studentHandle";

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import { Alert, Box, Button, Chip, Divider, FormControl, Grid, InputLabel, MenuItem, Paper, Select, Stack, Table, TableBody, TableCell, TableHead, TableRow, TextField, Typography } from '@mui/material';
 import { AddRounded, DownloadRounded, ReceiptLongRounded, RefreshRounded, PaymentsRounded } from '@mui/icons-material';
@@ -19,15 +19,15 @@ export default function FeeManagement() {
   const [invoiceForm, setInvoiceForm] = useState({ studentId:'', term:'Tuition Fee', item:'Tuition Fee', amount:'', discount:'0', tax:'0', dueDate:'', notes:'' });
   const [paymentForm, setPaymentForm] = useState({ invoiceId:'', amount:'', method:'UPI', transactionId:'', remarks:'' });
 
-  const load = async () => {
+  const load = useCallback(async () => {
     if (!adminID) return; setLoading(true); setMessage('');
     try { const [i,p,r] = await Promise.all([
       axios.get(`${API}/Fees/Invoices/${adminID}`, {params:{status,academicYear}}), axios.get(`${API}/Fees/Payments/${adminID}`), axios.get(`${API}/Fees/Report/${adminID}`, {params:{academicYear}})
     ]); setInvoices(i.data); setPayments(p.data); setReport(r.data); }
     catch(e){ setMessage(e.response?.data?.message || 'Unable to load fee data. Check the backend connection.'); }
     finally { setLoading(false); }
-  };
-  useEffect(()=>{load()},[adminID,status,academicYear]);
+  }, [adminID, academicYear, status]);
+  useEffect(()=>{load()},[load]);
   const visibleInvoices = useMemo(()=>selectedStudent?invoices.filter(i=>i.student?._id===selectedStudent):invoices,[invoices,selectedStudent]);
 
   const createInvoice = async e => { e.preventDefault(); setMessage(''); try {

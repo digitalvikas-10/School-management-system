@@ -9,15 +9,21 @@ const SeeNotice = () => {
 
     const { currentUser, currentRole } = useSelector(state => state.user);
     const { noticesList, loading, error, response } = useSelector((state) => state.notice);
+    const adminId = currentUser?._id;
+    const schoolId = currentUser?.school?._id;
 
     useEffect(() => {
+        if (!currentUser) return;
+
         if (currentRole === "Admin") {
-            dispatch(getAllNotices(currentUser._id, "Notice"));
+            if (adminId) {
+                dispatch(getAllNotices(adminId, "Notice"));
+            }
         }
-        else {
-            dispatch(getAllNotices(currentUser.school._id, "Notice"));
+        else if (schoolId) {
+            dispatch(getAllNotices(schoolId, "Notice"));
         }
-    }, [dispatch]);
+    }, [adminId, currentRole, currentUser, dispatch, schoolId]);
 
     if (error) {
         console.log(error);

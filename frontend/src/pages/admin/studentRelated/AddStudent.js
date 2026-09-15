@@ -22,7 +22,7 @@ const AddStudent = ({ situation }) => {
     const [className, setClassName] = useState('')
     const [sclassName, setSclassName] = useState('')
 
-    const adminID = currentUser._id
+    const adminID = currentUser?._id
     const role = "Student"
     const attendance = []
 
@@ -37,6 +37,7 @@ const AddStudent = ({ situation }) => {
     const [loader, setLoader] = useState(false)
 
     useEffect(() => {
+        if (!adminID) return;
         dispatch(getAllSclasses(adminID, "Sclass"));
     }, [adminID, dispatch]);
 
@@ -48,6 +49,11 @@ const AddStudent = ({ situation }) => {
             const selectedClass = sclassesList.find(
                 (classItem) => classItem.sclassName === event.target.value
             );
+            if (!selectedClass) {
+                setClassName('Select Class');
+                setSclassName('');
+                return;
+            }
             setClassName(selectedClass.sclassName);
             setSclassName(selectedClass._id);
         }
