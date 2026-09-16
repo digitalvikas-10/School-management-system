@@ -42,8 +42,6 @@ const ViewStudent = () => {
     if (response) { console.log(response) }
     else if (error) { console.log(error) }
 
-    const [name, setName] = useState('');
-    const [rollNum, setRollNum] = useState('');
     const [sclassName, setSclassName] = useState('');
     const [studentSchool, setStudentSchool] = useState('');
     const [subjectMarks, setSubjectMarks] = useState('');
@@ -74,8 +72,6 @@ const ViewStudent = () => {
 
     useEffect(() => {
         if (userDetails) {
-            setName(userDetails.name || '');
-            setRollNum(userDetails.rollNum || '');
             setSclassName(userDetails.sclassName || '');
             setStudentSchool(userDetails.school || '');
             setSubjectMarks(userDetails.examResult || '');
