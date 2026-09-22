@@ -19,7 +19,7 @@ const ChooseUser = ({ visitor }) => {
   const navigate = useNavigate()
   const password = "zxc"
 
-  const { status, currentUser, currentRole } = useSelector(state => state.user);;
+  const { status, currentUser, currentRole, response } = useSelector(state => state.user);
 
   const [loader, setLoader] = useState(false)
   const [showPopup, setShowPopup] = useState(false);
@@ -75,12 +75,12 @@ const ChooseUser = ({ visitor }) => {
         navigate('/Teacher/dashboard');
       }
     }
-    else if (status === 'error') {
+    else if (status === 'failed' || status === 'error') {
       setLoader(false)
-      setMessage("Network Error")
+      setMessage(status === 'failed' ? response : "Network Error")
       setShowPopup(true)
     }
-  }, [status, currentRole, navigate, currentUser]);
+  }, [status, currentRole, navigate, currentUser, response]);
 
   return (
     <StyledContainer>

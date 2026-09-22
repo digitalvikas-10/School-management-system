@@ -112,6 +112,7 @@ const LoginPage = ({ role }) => {
             setMessage(response)
             setShowPopup(true)
             setLoader(false)
+            setGuestLoader(false)
         }
         else if (status === 'error') {
             setMessage("Network Error")

@@ -177,7 +177,7 @@ const PremiumShell = ({ role, title, children }) => {
       {isMobile && <Drawer variant="temporary" open={mobileOpen} onClose={() => setMobileOpen(false)} PaperProps={{ className: "premium-drawer-paper mobile-drawer" }}>{drawer}</Drawer>}
       <Box component="main" className="premium-main">
         <Box className="page-heading">
-          <Box><Typography className="page-eyebrow">EDUFLOW • {role.toUpperCase()}</Typography><Typography className="page-title">{title}</Typography></Box>
+          <Box><Typography className="page-eyebrow">SCHOOLNEX • {role.toUpperCase()}</Typography><Typography className="page-title">{title}</Typography></Box>
           <Chip label="System online" size="small" className="online-chip" />
         </Box>
         {children}

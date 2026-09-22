@@ -1,11 +1,11 @@
-# EduFlow — Premium School Management System
+# SchoolNex — Premium School Management System
 
 This version upgrades the original MERN School Management System with a modern SaaS-style UI while preserving the existing MERN architecture and role-based workflows.
 
 ## What's upgraded
 
 ### New premium UI
-- EduFlow visual identity and modern landing page.
+- SchoolNex visual identity and modern landing page.
 - Responsive sidebar + mobile navigation drawer.
 - Sticky glass-style top bar.
 - Global navigation/search field.
